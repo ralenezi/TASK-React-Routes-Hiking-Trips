@@ -6,7 +6,7 @@ function SearchBar({ setQuery }) {
       <input
         type="search"
         id="form1"
-        class="form-control"
+        className="form-control"
         placeholder="Search"
         onChange={(e) => setQuery(e.target.value)}
       />

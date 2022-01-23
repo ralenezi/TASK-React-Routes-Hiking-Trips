@@ -3,23 +3,23 @@ import React from 'react';
 function Nav() {
   return (
     <nav
-      class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+      className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
       id="mainNav"
     >
-      <div class="container">
-        <a class="navbar-brand" href="#">
+      <div className="container">
+        <a className="navbar-brand" href="#">
           Hike
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">
+        <div className="collapse navbar-collapse" id="navbarResponsive">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item mx-0 mx-lg-1">
+              <a className="nav-link py-3 px-0 px-lg-3 rounded" href="#">
                 Home
               </a>
             </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">
+            <li className="nav-item mx-0 mx-lg-1">
+              <a className="nav-link py-3 px-0 px-lg-3 rounded" href="#">
                 Trips
               </a>
             </li>
