@@ -1,4 +1,3 @@
-
 ## Routes
 
 1. Install `react-router` and `react-router-dom` to your react app.
@@ -103,13 +102,28 @@ To:
 3. Add a style that if the page is active the link becomes underlined.
 
 ```javascript
- <NavLink style={({ isActive }) => isActive ? { textDecoration: 'underline' } : { textDecoration: 'none' }} to="/"> Home </NavLink>
+<NavLink
+  style={({ isActive }) =>
+    isActive ? { textDecoration: 'underline' } : { textDecoration: 'none' }
+  }
+  to="/"
+>
+  {' '}
+  Home{' '}
+</NavLink>
 ```
 
 ```javascript
- <NavLink style={({ isActive }) => isActive ? { textDecoration: 'underline' } : { textDecoration: 'none' }} to="/trips"> Trips </NavLink>
+<NavLink
+  style={({ isActive }) =>
+    isActive ? { textDecoration: 'underline' } : { textDecoration: 'none' }
+  }
+  to="/trips"
+>
+  {' '}
+  Trips{' '}
+</NavLink>
 ```
-
 
 ## Trip Details
 
@@ -195,57 +209,69 @@ const trip = tripsData.find((trip) => trip.slug === tripSlug);
 
 ## Challenge
 
-You have 3 buttons: easy, moderate and hard. when a button is clicked, filter the trips according to difficulty by changing the url, for example http://www.localhost:8000/trips/easy
+You have 3 buttons: easy, moderate and hard. when a button is clicked, filter the trips according to difficulty by changing the url, for example http://www.localhost:8000/trips?difficulty=easy
 
-1. In `TripsList.js` wrap your buttons with a `Link` tag.
+1. For this challenge, we will learn about a new hook with react router v6 called `useSearchParams`.
 
-```javascript
-          <Link to="/trip/easy">
-            <button className="btn btn-primary btn-xl">Easy</button>
-          </Link>
-          <Link to="/trips/moderate">
-            <button className="btn btn-primary btn-xl">Moderate</button>
-          </Link>
-          <Link to="/trips/hard">
-            <button className="btn btn-primary btn-xl">Hard</button>
-          </Link>
-```
-
-2. In `App.js` change the `/trips` route and add a 2 nested routes, one with the `difficulty` param and one without so it becomes optional.
+2. In `TripsList.js` import `useSearchParams` from `react-router-dom`.
 
 ```javascript
-<Route path="/trips" element={<TripsList />}>
-  <Route path=":difficulty" element={<TripsList />} />
-  <Route path="" element={<TripsList />} />
-</Route>
+import { useSearchParams } from 'react-router-dom';
 ```
 
-3. In TripsList.js extract your new param.
+3. `useSearchParams` hook works just like the `useState` hook.
 
 ```javascript
-const difficulty = useParams().difficulty;
+let [searchParams, setSearchParams] = useSearchParams();
 ```
 
-4. Now filter your list to contain the difficulty selected.
+4. We read our search params from the first argument and we change it using the second argument, just like `useState`!
+
+5. Lets assign a default value to our search param hook, the param is an object of a `key` and a `value`, the `key` represents the field that we want to search in, and the `value` represents the value that we want to look for.
+
+6. The field we want to filter according to is the `difficulty` field so let's set our inital state.
+
+```javascript
+let [searchParams, setSearchParams] = useSearchParams({ difficulty: '' });
+```
+
+7. Now we want to change the `searchParams` value using our buttons. Add an `onClick` property to each button and call `setSearchParams` with the value of that button.
+
+```javascript
+          <button
+            className="btn btn-primary btn-xl"
+            onClick={() => setSearchParams({ difficulty: 'easy' })}
+          >
+            Easy
+          </button>
+          <button
+            className="btn btn-primary btn-xl"
+            onClick={() => setSearchParams({ difficulty: 'moderate' })}
+          >
+            Moderate
+          </button>
+          <button
+            className="btn btn-primary btn-xl"
+            onClick={() => setSearchParams({ difficulty: 'hard' })}
+          >
+            Hard
+          </button>
+```
+
+8. The last thing we need to do is to filter the results according to the value of `searchParams`, to get the value of a certain key we use the `get` method of `searchParams`.
+
+```javascript
+searchParams.get('difficulty');
+```
+
+9. Filter the results:
 
 ```javascript
 const trips = tripsData
   .filter(
     (trip) =>
       trip.name.toLowerCase().includes(query.toLowerCase()) &&
-      trip.difficulty.includes(difficulty)
+      trip.difficulty.includes(searchParams.get('difficulty'))
   )
   .map((trip) => <TripItem trip={trip} />);
-```
-
-5. But what if the user didn't choose any difficulty? set the difficulty to an empty string.
-
-```javascript
-function TripsList() {
-  const [query, setQuery] = useState('');
-  let difficulty = useParams().difficulty;
-  if (!difficulty) {
-    difficulty = '';
-  }
-  ...
 ```
