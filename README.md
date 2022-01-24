@@ -2,7 +2,7 @@
 
 ## Routes
 
-1. Install `react-router` and `react-router-dom` to your react app.
+1. Install `react-router-dom` to your react app.
 
 ```javascript
 npm install react-router react-router-dom
@@ -10,7 +10,7 @@ npm install react-router react-router-dom
 
 2. In `index.js` import `BrowserRouter` from `react-router-dom` and wrap `App` with `BrowserRouter`.
 
-3. Import `Route` and `Routes` from `react-router`.
+3. Import `Route` and `Routes` from `react-router-dom`.
 
 4. In `App.js` Wrap each component with `Route` and add its `path`.
 
