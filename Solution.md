@@ -49,15 +49,6 @@ function App() {
 </Routes>
 ```
 
-6. Reorganise your routes so the longest paths comes first.
-
-```javascript
-<Routes>
-  <Route path="/details" element={<TripDetail />} />
-  <Route path="/trips" element={<TripsList />} />
-  <Route path="/" element={<Home />} />
-</Routes>
-```
 
 ## Navbar Links
 
