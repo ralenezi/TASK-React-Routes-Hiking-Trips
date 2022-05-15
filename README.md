@@ -1,4 +1,4 @@
-## Instructions 
+## Instructions
 
 - fork and [clone this repository](https://github.com/JoinCODED/TASK-Hiking-Trips-Routes)
 
@@ -39,4 +39,4 @@ npm install react-router-dom
 ## Challenge
 
 1. You have 3 buttons: easy, moderate and hard. when a button is clicked, filter the trips according to difficulty by changing the url, for example http://www.localhost:8000/trips?difficulty=easy
-Hint: [useSearchParams](https://reactrouter.com/docs/en/v6/api#usesearchparams)
+   Hint: [useSearchParams](https://reactrouter.com/docs/en/v6/api#usesearchparams)
