@@ -4,10 +4,11 @@ import tripsData from '../tripsData'
 
 function TripDetail() {
   const { tripId } = useParams()
-  console.log('TripDetail -> TripDetail', tripId)
   const trip = tripsData.find((trip) => trip.id === +tripId)
+
   if (!trip) return <Navigate to='/' />
   // || tripsData[0]
+
   return (
     <div className='modal-dialog modal-xl'>
       <div className='modal-content'>
